@@ -33,7 +33,7 @@ const Navbar = () => {
       <div className='container flex items-center justify-between'>
         <a href="#hero" className='text-xl font-bold text-primary flex items-center'>
           <span className='relative z-10'>
-            <span className='text-glow text-foreground'>PedroTech</span> Portfolio
+            <span className='text-glow text-foreground'>Dilshad</span> Portfolio
           </span>
         </a>
 
