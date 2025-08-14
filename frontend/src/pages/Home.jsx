@@ -1,5 +1,4 @@
 import React from 'react'
-import ThemeToggle  from '../components/ThemeToggle'
 import { StarBackground } from '../components/StarBackground'
 import Navbar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
@@ -11,11 +10,9 @@ import ContactSection from '../components/ContactSection'
 const Home = () => {
   return (
     <div className='min-h-screen bg-background text-foreground overflow-x-hidden'>
-        {/* Theme Toggle */}
-        <ThemeToggle />
         {/* Background Effects */}
         <StarBackground />
-        {/* Navbar */}
+        {/* Navbar (now includes ThemeToggle internally) */}
         <Navbar />
         {/* Main content */}
         <main>

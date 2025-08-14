@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from "lucide-react";
+import ThemeToggle from './ThemeToggle'; // Import ThemeToggle here
 
 const navItems = [
   { name: 'Home', href: '#hero' },
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
-  { name: 'Contacts', href: '#contacts' },
+  { name: 'Contact', href: '#contact' }, // Fixed from 'Contacts' to 'Contact' and href to '#contact'
 ];
 
 const Navbar = () => {
@@ -29,7 +30,7 @@ const Navbar = () => {
         isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-sm" : "py-5"
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> {/* Removed mt-3 for better alignment */}
         <div className="flex items-center justify-between">
           
           {/* Logo */}
@@ -39,27 +40,33 @@ const Navbar = () => {
             </span>
           </a>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item, key) => (
-              <a
-                key={key}
-                href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-300"
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
+          {/* Right side: Desktop nav, ThemeToggle, Mobile toggle */}
+          <div className="flex items-center space-x-4">
+            {/* Desktop nav */}
+            <div className="hidden md:flex items-center space-x-8">
+              {navItems.map((item, key) => (
+                <a
+                  key={key}
+                  href={item.href}
+                  className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
 
-          {/* Mobile nav toggle */}
-          <button
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="md:hidden text-foreground z-50"
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            {/* Theme Toggle (visible on all screens) */}
+            <ThemeToggle />
+
+            {/* Mobile nav toggle */}
+            <button
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              className="md:hidden text-foreground z-50"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 

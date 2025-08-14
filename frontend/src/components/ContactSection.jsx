@@ -1,7 +1,7 @@
-import { Instagram, Linkedin, Mail, MapPin, Phone, Send, Twitch, Twitter } from 'lucide-react'
+import { Instagram, Linkedin, Mail, MapPin, Phone, Send, Twitter } from 'lucide-react' // Removed Twitch as link was invalid
 import React, { useState } from 'react'
 import {cn} from '@/lib/utils';
-import { useToast } from '../hooks/use-toast';
+import { useToast } from '@/hooks/use-toast'; // Fixed import path assuming alias
 
 const ContactSection = () => {
     const {toast} = useToast()
@@ -28,40 +28,7 @@ const ContactSection = () => {
         setIsSubmitting(true)
 
         try {
-            // Option 1: Using EmailJS (Recommended)
-            const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    service_id: 'YOUR_SERVICE_ID', // Get from EmailJS
-                    template_id: 'YOUR_TEMPLATE_ID', // Get from EmailJS
-                    user_id: 'YOUR_USER_ID', // Get from EmailJS
-                    template_params: {
-                        from_name: formData.name,
-                        from_email: formData.email,
-                        to_email: YOUR_EMAIL,
-                        message: formData.message,
-                        reply_to: formData.email
-                    }
-                })
-            })
-
-            if (response.ok) {
-                toast({
-                    title: "Message sent successfully!",
-                    description: "Thank you for your message. I'll get back to you soon."
-                })
-                
-                // Reset form
-                setFormData({ name: '', email: '', message: '' })
-            } else {
-                throw new Error('Failed to send email')
-            }
-        } catch (error) {
-            console.error('Error sending email:', error)
-            
+            // Removed EmailJS attempt as placeholders make it unreliable; directly use mailto fallback for reliability
             // Fallback: Open default email client
             const subject = encodeURIComponent(`Message from ${formData.name}`)
             const body = encodeURIComponent(
@@ -70,11 +37,21 @@ const ContactSection = () => {
                 `Message:\n${formData.message}`
             )
             
-            window.open(`mailto:${YOUR_EMAIL}?subject=${subject}&body=${body}`)
+            window.location.href = `mailto:${YOUR_EMAIL}?subject=${subject}&body=${body}`
             
             toast({
                 title: "Opening email client",
-                description: "Your default email app will open with the message pre-filled."
+                description: "Your default email app will open with the message pre-filled. Please send it manually."
+            })
+
+            // Reset form
+            setFormData({ name: '', email: '', message: '' })
+        } catch (error) {
+            console.error('Error preparing email:', error)
+            toast({
+                title: "Error",
+                description: "Failed to prepare email. Please try contacting directly.",
+                variant: "destructive"
             })
         } finally {
             setIsSubmitting(false)
@@ -116,8 +93,8 @@ const ContactSection = () => {
                                 </div>
                                 <div>
                                     <h4 className='font-medium'>Phone</h4>
-                                    <a href="tel:+916236746894" className='text-muted-foreground hover:text-primary transition-colors'>
-                                        +91 8129645054
+                                    <a href="tel:+918129645054" className='text-muted-foreground hover:text-primary transition-colors'>
+                                        +91 8129645054 {/* Fixed phone number consistency */}
                                     </a>
                                 </div>
                             </div>
@@ -147,9 +124,7 @@ const ContactSection = () => {
                                 <a href="https://www.instagram.com/dilshad_mkd_3048/" target='_blank' rel="noopener noreferrer" className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors">
                                     <Instagram className="h-5 w-5 text-primary" />
                                 </a>
-                                <a href="#" target='_blank' rel="noopener noreferrer" className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors">
-                                    <Twitch className="h-5 w-5 text-primary" />
-                                </a>
+                                {/* Removed Twitch as link was invalid */}
                             </div>
                         </div>
                     </div>
@@ -207,7 +182,7 @@ const ContactSection = () => {
                                     "cosmic-button w-full cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                 )}
                             >
-                                {isSubmitting ? "Sending..." : "Send Message"}
+                                {isSubmitting ? "Preparing..." : "Send Message"}
                                 <Send size={16}/>
                             </button>
                         </form>
