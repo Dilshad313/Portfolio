@@ -1,22 +1,21 @@
-import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
-import NotFound from './pages/NotFound'
-import { Toaster } from './components/ui/Toaster'
-
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import { Toaster } from "./components/ui/Toaster";
 
 const App = () => {
   return (
     <>
-    <Toaster />
+      <Toaster />
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home/>} />
-          <Route path='*' element={<NotFound/>} />
+          <Route index element={<Home />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
