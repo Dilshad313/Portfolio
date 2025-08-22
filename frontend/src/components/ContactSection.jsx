@@ -1,7 +1,7 @@
-import { Instagram, Linkedin, Mail, MapPin, Phone, Send, Twitter } from 'lucide-react' // Removed Twitch as link was invalid
+import { Instagram, Linkedin, Mail, MapPin, Phone, Send, Twitter } from 'lucide-react' 
 import React, { useState } from 'react'
 import {cn} from '@/lib/utils';
-import { useToast } from '@/hooks/use-toast'; // Fixed import path assuming alias
+import { useToast } from '@/hooks/use-toast'; 
 
 const ContactSection = () => {
     const {toast} = useToast()
