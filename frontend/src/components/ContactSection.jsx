@@ -2,6 +2,7 @@ import { Instagram, Linkedin, Mail, MapPin, Phone, Send, Twitter } from 'lucide-
 import React, { useState } from 'react'
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser'
 
 const ContactSection = () => {
   const { toast } = useToast()
@@ -11,6 +12,12 @@ const ContactSection = () => {
     email: '',
     message: ''
   })
+
+  // 🔹 Your EmailJS credentials
+  const SERVICE_ID = "service_q64fubp"
+  const TEMPLATE_ID_ADMIN = "template_9lefqoc"   // For admin (you)
+  const TEMPLATE_ID_AUTOREPLY = "template_0p7nwx9" // For sender auto-reply
+  const PUBLIC_KEY = "7oPAUZj_naARcToSa"
 
   const YOUR_EMAIL = "diluk2005786@gmail.com"
 
@@ -27,26 +34,41 @@ const ContactSection = () => {
     setIsSubmitting(true)
 
     try {
-      const subject = encodeURIComponent(`Message from ${formData.name}`)
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\n` +
-        `Email: ${formData.email}\n\n` +
-        `Message:\n${formData.message}`
+      // 1️⃣ Send message to Admin (you)
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID_ADMIN,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        },
+        PUBLIC_KEY
       )
 
-      window.location.href = `mailto:${YOUR_EMAIL}?subject=${subject}&body=${body}`
+      // 2️⃣ Send Auto-Reply to Sender
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID_AUTOREPLY,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        },
+        PUBLIC_KEY
+      )
 
       toast({
-        title: "Opening email client",
-        description: "Your default email app will open with the message pre-filled. Please send it manually."
+        title: "Success 🎉",
+        description: "Your message has been sent successfully!"
       })
 
       setFormData({ name: '', email: '', message: '' })
     } catch (error) {
-      console.error('Error preparing email:', error)
+      console.error('EmailJS Error:', error)
       toast({
         title: "Error",
-        description: "Failed to prepare email. Please try contacting directly.",
+        description: "Failed to send message. Please try again later.",
         variant: "destructive"
       })
     } finally {
@@ -213,7 +235,7 @@ const ContactSection = () => {
                   "cosmic-button w-full cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 )}
               >
-                {isSubmitting ? "Preparing..." : "Send Message"}
+                {isSubmitting ? "Sending..." : "Send Message"}
                 <Send size={16} />
               </button>
             </form>
