@@ -12,5 +12,5 @@ const Footer = () => {
     </footer>
   )
 }
-// this is footer component 
+
 export default Footer
