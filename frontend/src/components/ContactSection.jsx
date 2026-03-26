@@ -19,7 +19,7 @@ const ContactSection = () => {
   const TEMPLATE_ID_AUTOREPLY = "template_0p7nwx9" // For sender auto-reply
   const PUBLIC_KEY = "7oPAUZj_naARcToSa"
 
-  const YOUR_EMAIL = "diluk2005786@gmail.com"
+  const YOUR_EMAIL = "dilshadmannarkkad@gmail.com"
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
