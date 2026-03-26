@@ -15,8 +15,10 @@ const HeroSection = () => {
 
                 <p className='text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3'>
                     I create stellar web experiences with modern technologies.
-                    Specializing in front-end development, I build interfaces that are 
-                    both beautiful and functional.
+                    Specializing in <b className='text-green-300'>full-stack development</b>, 
+                    I build scalable, high-performance applications with seamless integration between
+                    <b className='text-green-300'>front-end and back-end</b> — delivering
+                    interfaces that are both beautiful and functional.
                 </p>
 
                 <div className='pt-4 opacity-0 animate-fade-in-delay-4'>

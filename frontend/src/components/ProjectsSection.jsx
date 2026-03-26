@@ -3,7 +3,34 @@ import { ArrowRight, ExternalLink, Github } from 'lucide-react'
 
 const projects = [
   {
+    id: 0,
+    title: "Spiritus",
+    description: "A modern Spiritus website focused on mental health care, built to provide seamless access to therapy services with a clean, responsive, and user-friendly design.",
+    image: "/projects/project4.png",
+    tags: ["REACT", "NODEJS"],
+    demoUrl: "https://spiritus.vercel.app/",
+    githubUrl: "#",
+  },
+  {
     id: 1,
+    title: "Classora",
+    description: "A comprehensive College/School Management System built using the MERN stack, designed to streamline academic operations with scalable, secure, and user-friendly web solutions.",
+    image: "/projects/project5.png",
+    tags: ["REACT", "NODEJS"],
+    demoUrl: "https://classora-delta.vercel.app/",
+    githubUrl: "#",
+  },
+  {
+    id: 2,
+    title: "Talko",
+    description: "A secure real-time chat application featuring private messaging, group chats, and channels for seamless communication.",
+    image: "/projects/project6.png",
+    tags: ["REACT", "NODEJS"],
+    demoUrl: "https://real-chat-app-silk.vercel.app/",
+    githubUrl: "#",
+  },
+  {
+    id: 3,
     title: "Allen Solly",
     description: "A beautiful Allen Solly website using HTML and CSS",
     image: "/projects/project1.png",
@@ -12,7 +39,7 @@ const projects = [
     githubUrl: "#",
   },
   {
-    id: 2,
+    id: 4,
     title: "Kerala Taste",
     description: "A beautiful Kerala Taste website using HTML and CSS",
     image: "/projects/project2.png",
@@ -21,7 +48,7 @@ const projects = [
     githubUrl: "#",
   },
   {
-    id: 3,
+    id: 5,
     title: "Starbucks",
     description: "A beautiful Starbucks website using HTML and CSS",
     image: "/projects/project3.png",
